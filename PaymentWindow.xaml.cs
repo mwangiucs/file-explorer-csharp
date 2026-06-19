@@ -11,6 +11,11 @@ namespace FileExplorerCS;
 
 public partial class PaymentWindow : Window
 {
+    // PRODUCTION CONFIGURATIONS - REPLACE THESE WITH YOUR LIVE API AND CHECKOUT ENDPOINTS
+    private const string LemonSqueezyUrl = "https://neatly.lemonsqueezy.com/checkout";
+    private const string MpesaInitiateUrl = "https://api.neatly.com/payments/mpesa/initiate";
+    private const string MpesaCheckPaymentUrl = "https://api.neatly.com/payments/mpesa/check-payment";
+
     private readonly string _userEmail;
     private readonly DispatcherTimer _spinnerTimer = new();
     private readonly DispatcherTimer _countdownTimer = new();
@@ -97,7 +102,7 @@ public partial class PaymentWindow : Window
         {
             try
             {
-                string checkoutUrl = $"https://neatly.lemonsqueezy.com/checkout?email={Uri.EscapeDataString(_userEmail)}";
+                string checkoutUrl = $"{LemonSqueezyUrl}?email={Uri.EscapeDataString(_userEmail)}";
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(checkoutUrl) { UseShellExecute = true });
 
                 if (CardIntroPanel != null && CardAwaitingPanel != null)
@@ -137,7 +142,7 @@ public partial class PaymentWindow : Window
                 var content = new System.Net.Http.StringContent(payload, Encoding.UTF8, "application/json");
 
                 using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(3));
-                var response = await _httpClient.PostAsync("https://api.neatly.com/payments/mpesa/initiate", content, cts.Token);
+                var response = await _httpClient.PostAsync(MpesaInitiateUrl, content, cts.Token);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -194,7 +199,7 @@ public partial class PaymentWindow : Window
             {
                 using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(2));
                 var result = await _httpClient.GetAsync(
-                    $"https://api.neatly.com/payments/mpesa/check-payment?id={Uri.EscapeDataString(checkoutRequestId)}", cts.Token);
+                    $"{MpesaCheckPaymentUrl}?id={Uri.EscapeDataString(checkoutRequestId)}", cts.Token);
 
                 if (result.IsSuccessStatusCode)
                 {

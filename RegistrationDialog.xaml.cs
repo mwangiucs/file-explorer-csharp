@@ -48,6 +48,10 @@ public partial class RegistrationDialog : Window
             CloseButton.Visibility = Visibility.Visible;
         }
 
+#if !DEBUG
+        HelperButton.Visibility = Visibility.Collapsed;
+#endif
+
         EmailTextBox.Focus();
     }
 
