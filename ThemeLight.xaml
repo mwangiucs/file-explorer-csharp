@@ -1,0 +1,52 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ── Color Palette (Light Mode) ─────────────────────────────────── -->
+    <Color x:Key="Blue900">#042C53</Color>
+    <Color x:Key="Blue800">#0C447C</Color>
+    <Color x:Key="Blue700">#0E4D8A</Color>
+    <Color x:Key="Blue600">#185FA5</Color>
+    <Color x:Key="Blue500">#2470B8</Color>
+    <Color x:Key="Blue400">#378ADD</Color>
+    <Color x:Key="Blue200">#85B7EB</Color>
+    <Color x:Key="Blue100">#B5D4F4</Color>
+    <Color x:Key="Blue050">#E6F1FB</Color>
+    <Color x:Key="Gray800">#343A40</Color>
+    <Color x:Key="Gray700">#495057</Color>
+    <Color x:Key="Gray600">#6C757D</Color>
+    <Color x:Key="Gray500">#ADB5BD</Color>
+    <Color x:Key="Gray400">#CED4DA</Color>
+    <Color x:Key="Gray300">#DEE2E6</Color>
+    <Color x:Key="Gray200">#E9ECEF</Color>
+    <Color x:Key="Gray100">#F1F3F5</Color>
+    <Color x:Key="Gray050">#F8F9FA</Color>
+    <Color x:Key="RedAccent">#E24B4A</Color>
+    <Color x:Key="GreenAccent">#1D9E75</Color>
+    <Color x:Key="GreenLight">#EAF3DE</Color>
+    <Color x:Key="AmberAccent">#BA7517</Color>
+
+    <SolidColorBrush x:Key="Blue900Brush" Color="{StaticResource Blue900}"/>
+    <SolidColorBrush x:Key="Blue800Brush" Color="{StaticResource Blue800}"/>
+    <SolidColorBrush x:Key="Blue700Brush" Color="{StaticResource Blue700}"/>
+    <SolidColorBrush x:Key="Blue600Brush" Color="{StaticResource Blue600}"/>
+    <SolidColorBrush x:Key="Blue500Brush" Color="{StaticResource Blue500}"/>
+    <SolidColorBrush x:Key="Blue400Brush" Color="{StaticResource Blue400}"/>
+    <SolidColorBrush x:Key="Blue200Brush" Color="{StaticResource Blue200}"/>
+    <SolidColorBrush x:Key="Blue100Brush" Color="{StaticResource Blue100}"/>
+    <SolidColorBrush x:Key="Blue050Brush" Color="{StaticResource Blue050}"/>
+    <SolidColorBrush x:Key="Gray800Brush" Color="{StaticResource Gray800}"/>
+    <SolidColorBrush x:Key="Gray700Brush" Color="{StaticResource Gray700}"/>
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
+    <SolidColorBrush x:Key="Gray050Brush" Color="{StaticResource Gray050}"/>
+    <SolidColorBrush x:Key="WhiteBrush"   Color="White"/>
+    <SolidColorBrush x:Key="RedAccentBrush"   Color="{StaticResource RedAccent}"/>
+    <SolidColorBrush x:Key="GreenAccentBrush" Color="{StaticResource GreenAccent}"/>
+    <SolidColorBrush x:Key="GreenLightBrush"  Color="{StaticResource GreenLight}"/>
+    <SolidColorBrush x:Key="AmberAccentBrush" Color="{StaticResource AmberAccent}"/>
+
+</ResourceDictionary>

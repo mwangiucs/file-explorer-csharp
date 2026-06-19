@@ -1,0 +1,155 @@
+<Window x:Class="FileExplorerCS.PdfWatermarkDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add PDF Watermark"
+        Height="400"
+        Width="460"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F0F8FF">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="12" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" FontSize="14" Foreground="#1976D2" FontWeight="SemiBold" Text="Configure Document Watermark" />
+
+        <TabControl Grid.Row="2" x:Name="WatermarkTabControl" Background="White" BorderBrush="#90CAF9" BorderThickness="1">
+            <!-- Text Watermark Tab -->
+            <TabItem Header="Text Watermark" FontSize="12">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="12" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="12" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="12" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Watermark Text:" />
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="WatermarkTextBox" Height="28" VerticalContentAlignment="Center" Text="DRAFT" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Font Size:" />
+                    <DockPanel Grid.Row="2" Grid.Column="1">
+                        <TextBlock Text="{Binding ElementName=FontSizeSlider, Path=Value, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" TextAlignment="Right" VerticalAlignment="Center" />
+                        <Slider x:Name="FontSizeSlider" Minimum="10" Maximum="140" Value="60" TickFrequency="5" IsSnapToTickEnabled="True" VerticalAlignment="Center" />
+                    </DockPanel>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="Opacity:" />
+                    <DockPanel Grid.Row="4" Grid.Column="1">
+                        <TextBlock Text="{Binding ElementName=TextOpacitySlider, Path=Value, StringFormat={}{0:0%}}" Width="35" DockPanel.Dock="Right" TextAlignment="Right" VerticalAlignment="Center" />
+                        <Slider x:Name="TextOpacitySlider" Minimum="0.05" Maximum="1.0" Value="0.3" TickFrequency="0.05" IsSnapToTickEnabled="True" VerticalAlignment="Center" />
+                    </DockPanel>
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Text="Rotation Angle:" />
+                    <DockPanel Grid.Row="6" Grid.Column="1">
+                        <TextBlock Text="{Binding ElementName=AngleSlider, Path=Value, StringFormat={}{0:0}°}" Width="30" DockPanel.Dock="Right" TextAlignment="Right" VerticalAlignment="Center" />
+                        <Slider x:Name="AngleSlider" Minimum="0" Maximum="360" Value="45" TickFrequency="5" IsSnapToTickEnabled="True" VerticalAlignment="Center" />
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Image Watermark Tab -->
+            <TabItem Header="Image Watermark" FontSize="12">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="12" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="12" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Image Path:" />
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="ImagePathTextBox" Height="28" VerticalContentAlignment="Center" IsReadOnly="True" />
+                        <Button Grid.Column="1" Content="Browse…" Width="70" Height="28" Margin="4,0,0,0" Click="BrowseImageButton_OnClick" />
+                    </Grid>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Scale:" />
+                    <DockPanel Grid.Row="2" Grid.Column="1">
+                        <TextBlock Text="{Binding ElementName=ImageScaleSlider, Path=Value, StringFormat={}{0:0%}}" Width="35" DockPanel.Dock="Right" TextAlignment="Right" VerticalAlignment="Center" />
+                        <Slider x:Name="ImageScaleSlider" Minimum="0.1" Maximum="2.0" Value="0.5" TickFrequency="0.05" IsSnapToTickEnabled="True" VerticalAlignment="Center" />
+                    </DockPanel>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="Opacity:" />
+                    <DockPanel Grid.Row="4" Grid.Column="1">
+                        <TextBlock Text="{Binding ElementName=ImageOpacitySlider, Path=Value, StringFormat={}{0:0%}}" Width="35" DockPanel.Dock="Right" TextAlignment="Right" VerticalAlignment="Center" />
+                        <Slider x:Name="ImageOpacitySlider" Minimum="0.05" Maximum="1.0" Value="0.3" TickFrequency="0.05" IsSnapToTickEnabled="True" VerticalAlignment="Center" />
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="CancelButton" Width="80" Height="34" Margin="0,0,10,0" Click="CancelButton_OnClick"
+                    Background="#E3F2FD" BorderBrush="#90CAF9" Foreground="#1976D2" FontSize="12" FontWeight="Medium" Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                             BorderBrush="{TemplateBinding BorderBrush}" 
+                                             BorderThickness="1" 
+                                             CornerRadius="5"
+                                             Padding="10,6">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#BBDEFB"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>Cancel
+            </Button>
+            <Button x:Name="ApplyButton" Width="100" Height="34" Click="ApplyButton_OnClick"
+                    Background="#1976D2" BorderBrush="#1565C0" Foreground="White" FontSize="12" FontWeight="Medium" Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                             BorderBrush="{TemplateBinding BorderBrush}" 
+                                             BorderThickness="1" 
+                                             CornerRadius="5"
+                                             Padding="10,6">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1565C0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>Apply Watermark
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,15 @@
+## Build outputs
+bin/
+obj/
+
+## IDE and user settings
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Logging & temporary files
+crash.log
+*.tmp
+*.log

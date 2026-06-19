@@ -1,0 +1,27 @@
+private void RunSortAfterRename(List<string> renamedFilePaths, string sourceFolder)
+{
+    var dialog = new SortDialog(sourceFolder, renamedFilePaths.Count) { Owner = this };
+
+    if (dialog.ShowDialog() != true) return;
+
+    var options = dialog.Result;
+    if (options.Mode == SortMode.None) return;
+
+    try
+    {
+        var moves = FileSorter.Sort(renamedFilePaths, sourceFolder, options);
+
+        // Refresh the file list to reflect the new locations
+        RefreshFileList();
+
+        MessageBox.Show(
+            $"Sorted {moves.Count} file{(moves.Count == 1 ? "" : "s")} successfully.",
+            "Sort complete",
+            MessageBoxButton.OK,
+            MessageBoxImage.Information);
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show(ex.Message, "Sort failed", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
+}
