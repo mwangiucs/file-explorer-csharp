@@ -13,7 +13,7 @@
 
         mc:Ignorable="d"
 
-        Title="FileExplorer"
+        Title="FileExplorer" Icon="app_icon.ico"
 
         Height="780" Width="1200"
 
